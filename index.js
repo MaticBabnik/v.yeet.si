@@ -57,7 +57,8 @@ fastify.get('/:cls', async (rq,rs)=> {
 
 async function start() {
     try {
-        await fastify.listen(process.env.PORT ?? 3000)
+        await fastify.listen(process.env.PORT ?? 3000, "0.0.0.0") // fastify doesnt listen on all interfaces by default???
+	                                                          // bruh
     } catch (err) {
         fastify.log.error(err)
         process.exit(1)
