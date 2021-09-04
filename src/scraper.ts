@@ -1,8 +1,5 @@
 import needle from 'needle';
 import { JSDOM } from 'jsdom';
-import { isCommaListExpression } from 'typescript';
-
-const _ = undefined;
 
 export class Scraper {
 
@@ -11,7 +8,7 @@ export class Scraper {
     private scrapeInterval: number;
     public cache: Map<string, ScrapeResult>
 
-    public constructor(schoolId: eaId, classMap: Map<string, eaId>, scrapeInterval: number) {
+    constructor(schoolId: eaId, classMap: Map<string, eaId>, scrapeInterval: number) {
         this.schoolId = schoolId;
         this.classes = classMap;
 
@@ -103,8 +100,8 @@ export class Scraper {
                 out.push(timetable[i]);
             }
             return { lessons: out, time: Date.now() };
-        } catch (e) {
-            return { error: e, time: Date.now() };
+        } catch (e: any) {
+            return { error: e.toString(), time: Date.now() };
         }
     }
 }
